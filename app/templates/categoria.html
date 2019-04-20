@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row">
+
+					<!-- post -->
+					{% for post in (posts|selectattr("featured", "equalto", True)|list)[:1] %}
+					<div class="col-md-12">
+						<div class="post post-thumb">
+							<a class="post-img" href="{{url_for('post', post_id=post.id)}}"><img src="{{url_for('static', filename=post.pic)}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category {{categoria.css_class}}" href="#">{{categoria.name}}</a>
+									<span class="post-date">{{post.publish_date.strftime('%d/%m/%Y')}}</span>
+								</div>
+								<h3 class="post-title"><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a></h3>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /post -->
+								
+					<!-- post -->
+					{% for post in (posts|selectattr("featured", "equalto", True)|list)[1:3] %}
+					<div class="col-md-6">
+						<div class="post">
+							<a class="post-img" href="{{url_for('post', post_id=post.id)}}"><img src="{{url_for('static', filename=post.pic)}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category {{categoria.css_class}}" href="#">{{categoria.name}}</a>
+									<span class="post-date">{{post.publish_date.strftime('%d/%m/%Y')}}</span>
+								</div>
+								<h3 class="post-title"><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a></h3>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /post -->
+
+					<div class="clearfix visible-md visible-lg"></div>
+					
+					<!-- post -->
+					{% for post in (posts|sort(true, attribute='publish_date')) %}
+					<div class="col-md-12">
+						<div class="post post-row">
+							<a class="post-img" href="{{url_for('post', post_id=post.id)}}"><img src="{{url_for('static', filename=post.pic)}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category {{categoria.css_class}}" href="#">{{categoria.name}}</a>
+									<span class="post-date">{{post.publish_date.strftime('%d/%m/%Y')}}</span>
+								</div>
+								<h3 class="post-title"><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a></h3>
+								<p>{{post.abstract}}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /post -->					
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<!-- ad -->
+				<div class="aside-widget text-center">
+					<a href="https://www.youtube.com/watch?v=PMivT7MJ41M" style="display: inline-block;margin: auto;">
+						<img class="img-responsive" src="{{url_for('static', filename='img/ad.jpg')}}" alt="">
+					</a>
+				</div>
+				<!-- /ad -->
+				
+				<!-- post widget -->
+				<div class="aside-widget">
+					<div class="section-title">
+						<h2>Recentes</h2>
+					</div>
+
+					{% for post in (posts|sort(true, attribute='publish_date')|list)[:4] %}
+					<div class="post post-widget">
+						<a class="post-img" href="{{url_for('post', post_id=post.id)}}"><img src="{{url_for('static', filename=post.pic)}}" alt=""></a>
+						<div class="post-body">
+							<h3 class="post-title"><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a></h3>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<!-- /post widget -->
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /section -->
+
+{% endblock %}

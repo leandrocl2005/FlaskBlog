@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<h3>Flask para Udacity</h3>
+			<p>Este é um projeto em flask feito como pré-requisito para o Nanodegree de desenvolver Full-Stackda Udacity.</p>
+			<p>Nesse projeto foram avaliados os seguintes requisitos:</p>
+			<ul class="list-style">
+				<li class="list-group-item">O projeto implementa um JSON endpoint que exibe as mesmas informações exibidas em HTML endpoints de um item qualquer do catálogo.</li>
+				<li class="list-group-item">O site lê as informações de item e catálogo de um banco de dados.</li>
+				<li class="list-group-item">Criação de CRUD para criar, ler, atualizar e deletar posts.</li>
+				<li class="list-group-item">A página implementa um serviço de autorização e autenticação de terceiros (como Google Accounts ou Mozilla Persona), em vez de implementar suas próprias especificações de autenticação e autorização.</li>
+				<li class="list-group-item">Certifique-se de que o projeto inclua um botão/link de "login" e "logout". A aparência dele depende da opção do aluno.</li>
+				
+			</ul>
+			<p>Para acessar o endpoint entre em http://localhost:5000/post/&lt;post_id&gt;/getJson</p>
+			<p>post_id é o id do post que deseja consultar o Json</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
