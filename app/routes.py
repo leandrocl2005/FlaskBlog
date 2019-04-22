@@ -60,7 +60,7 @@ def meus_posts():
                 logged=logged,
                 categorias=categorias
             )
-        except:
+        except Exception:
             return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
@@ -77,7 +77,7 @@ def post_create():
     try:
         resp = google.get("/oauth2/v1/userinfo")
         user_email = resp.json()['email']
-    except:
+    except Exception:
         return redirect(url_for('login'))
 
     # context
@@ -113,7 +113,7 @@ def post_edit(post_id):
     try:
         resp = google.get("/oauth2/v1/userinfo")
         user_email = resp.json()['email']
-    except:
+    except Exception:
         return redirect(url_for('login'))
 
     # context
@@ -153,7 +153,7 @@ def post_delete(post_id):
     try:
         resp = google.get("/oauth2/v1/userinfo")
         user_email = resp.json()['email']
-    except:
+    except Exception:
         return redirect(url_for('login'))
 
     # context
@@ -203,7 +203,7 @@ def login():
     # try get data from user
     try:
         resp = google.get("/oauth2/v1/userinfo")
-    except:
+    except Exception:
         return redirect(url_for("google.login"))
     if resp.ok:
         data = resp.json()
@@ -246,12 +246,12 @@ def logout():
             "https://accounts.google.com/o/oauth2/revoke",
             params={"token": token},
             headers={"Content-Type": "application/x-www-form-urlencoded"}
-        ) # get out from google session
-        assert resp.ok, resp.text  
+        )
+        assert resp.ok, resp.text
         logout_user()
         session.clear()
         return redirect(url_for('index'))
-    except:
+    except Exception:
         logout_user()
         session.clear()
         return redirect(url_for('index'))
